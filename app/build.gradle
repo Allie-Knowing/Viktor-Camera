@@ -60,9 +60,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
-    def exoplayer_version = '2.9.3'
-    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
-    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
+    def exoplayer_version = "2.15.0"
+    implementation "com.google.android.exoplayer:exoplayer:$exoplayer_version"
+
 
 
     implementation 'androidx.activity:activity-ktx:1.4.0'

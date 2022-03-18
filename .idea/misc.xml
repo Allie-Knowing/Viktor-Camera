@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/Viktor-Camera/app/src/main/res/drawable/edittext_background.xml" value="0.2335" />
+        <entry key="..\:/Programming/Viktor-Camera/app/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="..\:/Programming/Viktor-Camera/app/src/main/res/layout/activity_main.xml" value="0.34791666666666665" />
         <entry key="..\:/Programming/Viktor-Camera/app/src/main/res/layout/fragment_camera.xml" value="0.33" />
       </map>
