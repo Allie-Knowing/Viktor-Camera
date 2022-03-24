@@ -27,7 +27,7 @@
                 android:layout_height="20dp"
                 android:background="@null"
                 android:src="@drawable/ic_back" />
-            
+
         </androidx.appcompat.widget.Toolbar>
 
         <ImageButton

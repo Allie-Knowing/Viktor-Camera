@@ -2,10 +2,15 @@ package com.example.viktor_camera
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ContentUris
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.net.Uri.parse
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Surface
 import android.widget.Toast
@@ -22,6 +27,7 @@ import com.example.viktor_camera.databinding.ActivityMainBinding
 import com.foreveryone.knowing.base.BaseActivity
 import java.io.File
 import java.lang.Exception
+import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -156,6 +162,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                             Toast.LENGTH_SHORT
                         ).show()
                         Log.d("123","저장됨 outputFileResults.savedUri: ${outputFileResults.savedUri}")
+                        Log.d("123", "저장됨 ${Uri.fromFile(File(outputFileResults.savedUri.toString()))}")
+                        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                        intent.apply {
+                            putExtra("uri", outputFileResults.savedUri.toString())
+                        }
+
+                        startActivity(intent)
                     }
 
                     override fun onError(
@@ -190,5 +203,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val now = Date(System.currentTimeMillis())
         val simpleDate = SimpleDateFormat("yyyyMMdd_hhmmss")
         return simpleDate.format(now)
+    }
+
+    @SuppressLint("Range")
+    private fun parseUri(filePath : String) : Uri{
+        val cursor = contentResolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                null, "_data = '$filePath'", null, null)
+        cursor?.moveToNext()
+        val id = cursor?.getInt(cursor.getColumnIndex("_id"))
+        val uri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id!!.toLong())
+        return uri
     }
 }
