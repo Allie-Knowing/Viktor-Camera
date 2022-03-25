@@ -6,6 +6,7 @@ import com.example.viktor_camera.databinding.ActivityDetailBinding
 import com.foreveryone.knowing.base.BaseActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
@@ -36,6 +37,15 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_det
         //var mediaSource: ProgressiveMediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(uri)
 
         exoPlayer.setMediaItem(mediaItem)
+        exoPlayer.repeatMode = Player.REPEAT_MODE_ALL
+        exoPlayer.prepare()
+        exoPlayer.play()
+    }
 
+    override fun onStop() {
+        super.onStop()
+
+        binding.exoplayer.player = null
+        exoPlayer.release()
     }
 }
