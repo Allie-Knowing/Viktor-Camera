@@ -19,21 +19,9 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_detail) {
-
-    private val gallerySelect =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                val data = it.data?.data!!.path
-                val uri = it.data?.data!!
-            }
-        }
-
     private lateinit var exoPlayer: ExoPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
 
     }
 
