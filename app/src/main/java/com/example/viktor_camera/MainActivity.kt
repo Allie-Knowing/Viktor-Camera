@@ -222,4 +222,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val uri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id!!.toLong())
         return uri
     }
+
+    private fun intent(uri: String) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.apply {
+            putExtra("uri", uri)
+        }
+        startActivity(intent)
+    }
 }
