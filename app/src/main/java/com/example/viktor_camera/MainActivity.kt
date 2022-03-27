@@ -2,6 +2,7 @@ package com.example.viktor_camera
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
@@ -33,6 +34,14 @@ import java.util.*
 
 @SuppressLint("RestrictedApi")
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    private val gallerySelect =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val data = it.data?.data!!.path
+                val uri = it.data?.data!!
+            }
+        }
 
     private val REQUEST_CODE_PERMISSIONS = 10
     private val REQUIRED_PERMISSIONS = arrayOf(
@@ -214,4 +223,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val uri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id!!.toLong())
         return uri
     }
+
+
 }

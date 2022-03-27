@@ -1,7 +1,13 @@
 package com.example.viktor_camera
 
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.example.viktor_camera.databinding.ActivityDetailBinding
 import com.foreveryone.knowing.base.BaseActivity
 import com.google.android.exoplayer2.ExoPlayer
@@ -13,13 +19,9 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_detail) {
-
     private lateinit var exoPlayer: ExoPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
 
     }
 
@@ -47,5 +49,13 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_det
 
         binding.exoplayer.player = null
         exoPlayer.release()
+    }
+
+    private fun selectVideo(startForResult: ActivityResultLauncher<Intent>){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.apply {
+            data = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+            type = ""
+        }
     }
 }
