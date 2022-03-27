@@ -40,6 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val data = it.data?.data!!.path
                 val uri = it.data?.data!!
+                intent(uri.toString())
             }
         }
 
@@ -96,6 +97,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 isRecording = false
                 videoCapture.stopRecording()
             }
+        }
+        binding.galleryBtn.setOnClickListener{
+            GalleryHelper(this).selectPhoto(gallerySelect)
         }
     }
 
@@ -172,12 +176,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                         ).show()
                         Log.d("123","저장됨 outputFileResults.savedUri: ${outputFileResults.savedUri}")
                         Log.d("123", "저장됨 ${Uri.fromFile(File(outputFileResults.savedUri.toString()))}")
-                        val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                        intent.apply {
-                            putExtra("uri", outputFileResults.savedUri.toString())
-                        }
-
-                        startActivity(intent)
+                        intent(outputFileResults.savedUri.toString())
                     }
 
                     override fun onError(
@@ -224,5 +223,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         return uri
     }
 
-
+    private fun intent(uri: String) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.apply {
+            putExtra("uri", uri)
+        }
+        startActivity(intent)
+    }
 }
