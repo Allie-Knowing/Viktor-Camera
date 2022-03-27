@@ -51,7 +51,7 @@
             android:layout_width="240dp"
             android:layout_height="400dp"
             android:layout_marginTop="10dp"
-            app:resize_mode="fill"
+            app:resize_mode="fit"
             app:use_controller="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
